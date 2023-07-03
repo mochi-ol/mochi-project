@@ -9,7 +9,7 @@ export class CatsController {
 
   @Post()
   async create(@Body() createCatDto: CreateCatDto) {
-    this.catsService.create(createCatDto)
+    this.catsService.create(createCatDto) //this.catService に CatServiceが入る：コンストラクタインジェクション
   }
 
   @Get()
