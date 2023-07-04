@@ -2,13 +2,14 @@ import { Module } from '@nestjs/common';
 import { CatsController } from './cats.controller';
 import { CatsService } from './cats.service'; 
 
+@Global()
 @Module({
   controllers: [CatsController], // ②
   providers: [CatsService], // ①
   exports: [CatsService] // ④　これで、CatsModuleをインポートしたモジュールは全てCatsServiceにアクセスできるようになる
 })
 export class CatsModule {
-  constructor(private catsService: CatsService) {}
+  // constructor(private catsService: CatsService) {}
 }
 
 // Module()デコレーターは、モジュールをプロパティで記述したオブジェクトを受け取る
