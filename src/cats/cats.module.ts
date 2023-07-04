@@ -7,7 +7,9 @@ import { CatsService } from './cats.service';
   providers: [CatsService], // ①
   exports: [CatsService] // ④　これで、CatsModuleをインポートしたモジュールは全てCatsServiceにアクセスできるようになる
 })
-export class CatsModule {}
+export class CatsModule {
+  constructor(private catsService: CatsService) {}
+}
 
 // Module()デコレーターは、モジュールをプロパティで記述したオブジェクトを受け取る
 // ①providers    ：Nestインジェクタによってインスタンス化され、少なくともこのModule全体で共有される可能性があるProvider。
