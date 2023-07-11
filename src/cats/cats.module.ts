@@ -2,7 +2,7 @@ import { Module } from '@nestjs/common';
 import { CatsController } from './cats.controller';
 import { CatsService } from './cats.service'; 
 
-@Global()
+// @Global()
 @Module({
   controllers: [CatsController], // ②
   providers: [CatsService], // ①
