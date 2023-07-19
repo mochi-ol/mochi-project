@@ -1,4 +1,5 @@
 import { DataSource } from 'typeorm';
+import { User } from './users/users.entity';
 
 export default new DataSource({
   type: 'mysql',
@@ -7,8 +8,8 @@ export default new DataSource({
   database: 'test',
   username: 'test',
   password: 'password',
-  entities: ['dist/**/entities/**/*.entity.js'],
-  migrations: ['dist/**/migrations/**/*.js'],
+  entities: [User],
+  migrations: ['src/migration/*.ts'],
 
   // ログを出力するかどうか
   logging: true,

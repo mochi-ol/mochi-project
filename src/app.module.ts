@@ -6,6 +6,7 @@ import { UsersModule } from './users/users.module';
 import config from '../config/configuration';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
+import { User } from './users/users.entity';
 
 @Module({
   imports: [
@@ -25,7 +26,7 @@ import { AppService } from './app.service';
         username: configService.get('database.username'),
         password: configService.get('database.password'),
         database: configService.get('database.name'),
-        entities: ['dist/**entities/**/*.entity.js'],
+        entities: [User],
       }),
       inject: [ConfigService],
     }),
