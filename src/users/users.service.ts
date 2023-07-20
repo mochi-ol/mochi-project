@@ -11,15 +11,23 @@ export class UsersService {
     private readonly usersRepository: Repository<User>
   ) {}
 
-  users: CreateUserDto[] = [];
   async create({ username, password }: CreateUserDto) {
-    await this.usersRepository.save({
+    //awaitなので、createでのpost送信が終わるのを待ってからreturnされる
+    const newUser = await this.usersRepository.save({
       username: username,
       password: password,
     });
+    return newUser;
   }
-  findAll() {
-    return this.users;
+  async findAll() {
+    return await this.usersRepository.find();
+  }
+  async findOne(id: number) {
+    return await this.usersRepository.findOne({
+      where: {
+        id: id,
+      },
+    });
   }
 }
 
