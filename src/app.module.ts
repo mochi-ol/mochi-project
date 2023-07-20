@@ -12,7 +12,7 @@ import { User } from './users/users.entity';
   imports: [
     AppModule,
     CatsModule,
-    UsersModule,
+    //app.moduleではroot:typeormとの接続の設定
     ConfigModule.forRoot({
       isGlobal: true,
       load: [config],

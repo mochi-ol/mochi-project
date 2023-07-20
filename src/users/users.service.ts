@@ -8,14 +8,22 @@ import { User } from './users.entity';
 export class UsersService {
   constructor(
     @InjectRepository(User)
-    private usersRepository: Repository<User>
+    private readonly usersRepository: Repository<User>
   ) {}
 
   users: CreateUserDto[] = [];
-  create(user: CreateUserDto) {
-    this.users.push(user);
+  async create({ username, password }: CreateUserDto) {
+    await this.usersRepository.save({
+      username: username,
+      password: password,
+    });
   }
   findAll() {
     return this.users;
   }
 }
+
+//@InjectRepository デコレータを利用した上で、対象となるレポジトリを定義します。
+//User へのアクセスを管理するためのレポジトリを TypeOrmModule が生成してくれます。
+//型情報は、 TypeORM 本体の Repository の Generics でまかないます。
+//userRepository はオーソドックスなレポジトリ層として利用可能になる
