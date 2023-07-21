@@ -18,3 +18,8 @@ export default new DataSource({
   // trueにすると、エンティティの変更を検知して、自動的にテーブルが更新される
   // 本番環境では、falseにすること
 });
+
+/* このファイルはmigrationで使うんだわ。なくてもDBとの接続はできる
+app.module内の記述と被っててわかりにくいけど
+yarn typeorm-ts-node-commonjs migration:generate src/migration/UserMigration -d src/typeOrm.config.ts
+このコマンドでmigrationを作る時の引数として、これが必要 */
