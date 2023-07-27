@@ -1,6 +1,18 @@
-import { Controller, Get, Post, Body, ValidationPipe, Param, Patch, Delete } from '@nestjs/common';
+import {
+  Controller,
+  Get,
+  Post,
+  Body,
+  Request,
+  ValidationPipe,
+  Param,
+  Patch,
+  Delete,
+  UseGuards,
+} from '@nestjs/common';
 import { CreateUserDto } from './dto/create-user.dto';
 import { UsersService } from './users.service';
+import { AuthGuard } from '@nestjs/passport';
 
 @Controller('users')
 export class UsersController {
@@ -11,7 +23,9 @@ export class UsersController {
   }
 
   @Get(':id')
-  findOne(@Param('id') id: number) {
+  @UseGuards(AuthGuard('jwt'))
+  findOne(@Param('id') id: number, @Request() req: any) {
+    // return req.user;
     return this.usersService.findOne(id);
   }
 
