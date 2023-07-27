@@ -3,6 +3,7 @@ import { CreateUserDto } from './dto/create-user.dto';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { User } from './users.entity';
+import * as bcrypt from 'bcryptjs';
 
 @Injectable()
 export class UsersService {
@@ -18,7 +19,7 @@ export class UsersService {
     const newUser = await this.usersRepository.save({
       //awaitなので、createでのpost送信が終わるのを待ってからreturnされる
       username: username,
-      password: password,
+      password: await bcrypt.hash(password, 12),
     });
     return newUser;
   }
