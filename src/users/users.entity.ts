@@ -1,16 +1,15 @@
 import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
 
-@Entity('users')
+@Entity()
 export class User {
   @PrimaryGeneratedColumn({
     comment: 'アカウントID',
   })
-  readonly id: number;
+  id: number;
 
   @Column('varchar', { comment: 'アカウント名' })
-  name: string;
+  username: string;
 
-  constructor(name: string) {
-    this.name = name;
-  }
+  @Column('varchar', { comment: 'パスワード' })
+  password: string;
 }
